@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+    
+
+    <bean id="service" class="k.feedback.Service">
+		<property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 云环境-->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+	    <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+	    <property name="jdbcUrl" value="jdbc:mysql://172.30.48.28:3306/d94ed893c100b4d25b91b133ef598e4f2"/>
+	    <property name="user" value="uMog2BuAKyhK7"/>
+	    <property name="password" value="pu4gVaot0iam1"/>
+	    <property name="minPoolSize" value="1"/>
+	    <property name="maxPoolSize" value="10"/>
+	    <property name="initialPoolSize" value="1"/>
+	    <property name="acquireIncrement" value="1"/>
+	    <property name="testConnectionOnCheckin" value="true"/>
+	    <property name="automaticTestTable" value="C3P0TestTable"/>
+	    <property name="idleConnectionTestPeriod" value="18000"/>
+	    <property name="maxIdleTime" value="25000"/>
+	</bean>
+	
+	<!-- 本地环境 
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+	    <property name="url" value="jdbc:mysql://127.0.0.1:3306/kfeedback" />
+	    <property name="username" value="root" />
+	    <property name="password" value="root" />
+	    
+	    <property name="maxActive" value="20" />
+	    <property name="initialSize" value="1" />
+	    <property name="maxWait" value="60000" />
+	    <property name="minIdle" value="1" />
+	    <property name="timeBetweenEvictionRunsMillis" value="3000" />
+	    <property name="minEvictableIdleTimeMillis" value="300000" />
+	    <property name="validationQuery" value="SELECT 'x'" />
+	    <property name="testWhileIdle" value="true" />
+	    <property name="testOnBorrow" value="false" />
+	    <property name="testOnReturn" value="false" />
+	    <property name="poolPreparedStatements" value="true" />
+	    <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+	</bean>
+	-->
+</beans>

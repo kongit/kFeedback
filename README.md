@@ -19,45 +19,8 @@ kFeedback提供了post API;
 post API是嵌入到你的产品中，用户提供反馈信息后，调用此API将信息存储到kFeedback中；
 post API的结构：
 
-1
 http://kfeedback.cloudfoundry.com/Action?m=insFeedback&token=kFeedback&fb=系统反馈信息
-Demo in HttpClient:
-01
-//appToken - app的令牌
-02
-//fb - 用户的反馈信息
-03
-public static void sendFeedback(String appToken,String fb){
-04
-  DefaultHttpClient httpclient = new DefaultHttpClient();
-05
-  StringBuilder url = new StringBuilder();
-06
-  url.append("http://kfeedback.cloudfoundry.com/Action");
-07
-  try {
-08
-    HttpPost httpost = new HttpPost(url.toString());
-09
-    List<NameValuePair> params = new ArrayList<NameValuePair>();
-10
-    params.add(new BasicNameValuePair("m", "insFeedback"));
-11
-    params.add(new BasicNameValuePair("token", appToken));
-12
-    params.add(new BasicNameValuePair("fb", fb));
-13
-    httpost.setEntity(new UrlEncodedFormEntity(params,HTTP.UTF_8));
-14
-    ResponseHandler<String> responseHandler = new BasicResponseHandler();
-15
-    httpclient.execute(httpost, responseHandler);
-16
-  } catch (Exception e) {
-17
-  }finally{httpclient.getConnectionManager().shutdown();}
-18
-}
+
 应用所使用的技术及软件： 
 前端采用HTML5 + Twitter Bootstrap框架； 
 服务端符合JAVA EE规范； 
